@@ -1,12 +1,20 @@
-# User types a sentence, program tells them how many words are in it, how many characters, 
-# and how many characters without spaces.
-# You have everything you need already — len(), .split(), .replace().
+import random
 
-#characters no space = cns
-#characters with space = cws
-sentence = input("")
-words = len(sentence.split(" "))
-cns = len(sentence.replace(" ", ""))
-cws = len(sentence)
-print(f"amount of words: {words}, characters with space: {cws}, characters no space {cns}")
-#print(words)
+chars1 = "abcdefghijklmnopqrstuvwxyz123456789"
+chars2 = "!#€%&/=?"
+
+def main(): #define main that takes in info ab password and eventually prints it too
+    length = int(input("how long? "))
+    special = input("special characters? (yes/no) ").strip().lower()
+    print(password(length, special)) #print password(with desired traits)
+
+def password(length, special): #define password generator
+    pool = chars1 
+    if special == "yes":
+        pool = chars1 + chars2 # use both pools if user wants special chasracters
+    result = "" #start off empty to loop taking (length) amount characters from the pool
+    for x in range(length): #create the actual loop
+        result += random.choice(pool) #continue adding characters till you have the right amount of characters
+    return result #return it to main
+
+main()
